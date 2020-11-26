@@ -1,0 +1,30 @@
+class Solution {
+      static boolean atleast(int freq[],int k){
+            for(int i=0;i<26;i++){
+                if(freq[i]!=0 && freq[i]<k){
+                    return false;
+                }
+            }
+            return true;
+        }
+      static void setZero(int freq[]){
+            for(int i=0;i<26;i++){
+                freq[i]=0;
+            }
+        }
+    public int longestSubstring(String s, int k) {
+      
+      
+        int freq[] = new int[26];
+    int maxlen=0;
+        for(int i=0;i<s.length();i++){
+         setZero(freq);   
+            for(int j=i;j<s.length();j++){
+           freq[s.charAt(j)-'a']++;
+            if(atleast(freq,k)){
+            maxlen = Math.max(maxlen,j-i+1);    
+            }    
+            }
+        }
+        return maxlen;
+    }
